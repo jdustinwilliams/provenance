@@ -50,13 +50,18 @@
   </p>
 
   <p>
-    <% provenance_record.provenance_files.each do |file| %>
-      <% if file.representable? %>
-        <%= image_tag file.representation(resize_to_limit: [100, 100]) %>
-      <% else %>
-        <%= link_to file.filename, rails_blob_path(file, disposition: 'attachment') %>
-      <% end%>
-    <% end %>
+    <strong>Files:</strong>
+    <div class="row">
+      <% provenance_record.provenance_files.each do |file| %>
+        <div class="col-md-4 col-lg-3 mb-3">
+          <% if file.representable? %>
+            <%= link_to(image_tag(file.representation(resize_to_limit: [200, 200])), file) %>
+          <% else %>
+            <%= link_to file.filename, rails_blob_path(file, disposition: 'attachment') %>
+          <% end%>
+        </div>
+      <% end %>
+    </div>
   </p>
 
 </div>
