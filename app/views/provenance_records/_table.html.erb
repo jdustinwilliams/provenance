@@ -1,0 +1,35 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Accession #</th>
+      <th scope="col">Collection name</th>
+      <th scope="col">Date range</th>
+      <th scope="col">Linear feet</th>
+      <th scope="col">Received</th>
+      <th scope="col">Link</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @provenance_records.each do |provenance_record| %>
+    <tr>
+      <td>
+        <%= provenance_record.accession_number %>
+      </td>
+      <td>
+        <%= provenance_record.collection_name %>
+      </td>
+      <td>
+        <%= provenance_record.date_expression %>
+      </td>
+      <td>
+        <%= provenance_record.linear_feet %>
+      </td>
+      <td>
+        <%= provenance_record.year_received %>
+      </td>
+      <td>
+        <%= link_to "Show this provenance record", provenance_record %>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -2,13 +2,6 @@
 
 <h1>Provenance records</h1>
 
-<div id="provenance_records">
-  <% @provenance_records.each do |provenance_record| %>
-    <%= render provenance_record %>
-    <p>
-      <%= link_to "Show this provenance record", provenance_record %>
-    </p>
-  <% end %>
-</div>
+<%= render "table" %>
 
 <%= link_to "New provenance record", new_provenance_record_path %>
