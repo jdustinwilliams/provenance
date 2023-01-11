@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  accession_number: MyString
+  collection_name: MyString
+  start_year: 1
+  end_year: 1
+  date_expression: MyString
+  year_received: 1
+  month_received: 1
+  day_received: 1
+  linear_feet: 9.99
+  containers: MyString
+
+two:
+  accession_number: MyString
+  collection_name: MyString
+  start_year: 1
+  end_year: 1
+  date_expression: MyString
+  year_received: 1
+  month_received: 1
+  day_received: 1
+  linear_feet: 9.99
+  containers: MyString
