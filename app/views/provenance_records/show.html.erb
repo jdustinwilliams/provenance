@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @provenance_record %>
+
+<div>
+  <%= link_to "Edit this provenance record", edit_provenance_record_path(@provenance_record) %> |
+  <%= link_to "Back to provenance records", provenance_records_path %>
+
+  <%= button_to "Destroy this provenance record", @provenance_record, method: :delete %>
+</div>

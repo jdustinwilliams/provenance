@@ -1,0 +1,67 @@
+<%= form_with(model: provenance_record) do |form| %>
+  <% if provenance_record.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(provenance_record.errors.count, "error") %> prohibited this provenance_record from being saved:</h2>
+
+      <ul>
+        <% provenance_record.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :accession_number, style: "display: block" %>
+    <%= form.text_field :accession_number %>
+  </div>
+
+  <div>
+    <%= form.label :collection_name, style: "display: block" %>
+    <%= form.text_field :collection_name %>
+  </div>
+
+  <div>
+    <%= form.label :start_year, style: "display: block" %>
+    <%= form.number_field :start_year %>
+  </div>
+
+  <div>
+    <%= form.label :end_year, style: "display: block" %>
+    <%= form.number_field :end_year %>
+  </div>
+
+  <div>
+    <%= form.label :date_expression, style: "display: block" %>
+    <%= form.text_field :date_expression %>
+  </div>
+
+  <div>
+    <%= form.label :year_received, style: "display: block" %>
+    <%= form.number_field :year_received %>
+  </div>
+
+  <div>
+    <%= form.label :month_received, style: "display: block" %>
+    <%= form.number_field :month_received %>
+  </div>
+
+  <div>
+    <%= form.label :day_received, style: "display: block" %>
+    <%= form.number_field :day_received %>
+  </div>
+
+  <div>
+    <%= form.label :linear_feet, style: "display: block" %>
+    <%= form.text_field :linear_feet %>
+  </div>
+
+  <div>
+    <%= form.label :containers, style: "display: block" %>
+    <%= form.text_field :containers %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
