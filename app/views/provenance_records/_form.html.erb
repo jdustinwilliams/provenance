@@ -70,7 +70,17 @@
 
   <div class="col-md-12">
     <%= form.label :provenance_files, class: "form-label" %>
-    <%= form.file_field :provenance_files, multiple: true, class: "form-control" %>
+    
+    <% # Keep previously uploaded files using the strategy described here: https://stackoverflow.com/a/58351326 %>
+    <%= form.file_field :provenance_files, multiple: true, direct_upload: true, class: "form-control" %>
+    <% form.object.provenance_files.each do |file| %>
+      <%= form.hidden_field :provenance_files, value: file.signed_id, multiple: true %>
+      <% if file.representable? %>
+        <%= image_tag file.representation(resize_to_limit: [100, 100]) %>
+      <% else %>
+        <%= link_to file.filename, rails_blob_path(file, disposition: 'attachment') %>
+      <% end%>
+    <% end %>
   </div>
 
   <div class="row mt-4">
