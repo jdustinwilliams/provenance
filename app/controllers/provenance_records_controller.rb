@@ -65,6 +65,6 @@ class ProvenanceRecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def provenance_record_params
-      params.require(:provenance_record).permit(:accession_number, :collection_name, :start_year, :end_year, :date_expression, :year_received, :month_received, :day_received, :linear_feet, :containers, :provenance_files => [])
+      params.require(:provenance_record).permit(:accession_number, :collection_name, :collection_name_alpha, :start_year, :end_year, :date_expression, :year_received, :month_received, :day_received, :linear_feet, :containers, :provenance_files => [])
     end
 end

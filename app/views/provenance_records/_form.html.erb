@@ -11,14 +11,18 @@
     </div>
   <% end %>
   <div class="row mt-3">
-    <div class="col-md-3">
+    <div class="col-md-2">
       <%= form.label :accession_number, class: "form-label" %>
       <%= form.text_field :accession_number, class: "form-control" %>
     </div>
 
-    <div class="col-md-9">
+    <div class="col-md-5">
       <%= form.label :collection_name, class: "form-label" %>
       <%= form.text_field :collection_name, class: "form-control" %>
+    </div>
+    <div class="col-md-5">
+      <%= form.label :collection_name_alpha, class: "form-label" %>
+      <%= form.text_field :collection_name_alpha, class: "form-control" %>
     </div>
   </div>
 
