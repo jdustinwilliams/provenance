@@ -1,4 +1,10 @@
 <div id="<%= dom_id provenance_record %>">
+  <% if provenance_record.unlist %>
+    <p>
+      <strong class="fs-2 text-danger">UNLISTED</strong>
+    </p>
+  <% end %>
+
   <p>
     <strong>Accession number:</strong>
     <%= provenance_record.accession_number %>

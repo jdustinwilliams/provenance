@@ -11,6 +11,12 @@
     </div>
   <% end %>
   <div class="row mt-3">
+    <div class="col-md-12">
+      <%= form.label :unlist, class: "form-label" %>
+      <%= form.check_box :unlist, class: "form-check-input" %>
+    </div>
+  </div>
+  <div class="row mt-3">
     <div class="col-md-2">
       <%= form.label :accession_number, class: "form-label" %>
       <%= form.text_field :accession_number, class: "form-control" %>
