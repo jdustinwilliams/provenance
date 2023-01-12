@@ -4,6 +4,9 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <% if params[:show_unlisted] == "true" %>
+          <th scope="col">Unlisted</th>
+        <% end %>
         <th scope="col"><%= sort_link(column: "accession_number", label: "Accession#") %></th>
         <th scope="col"><%= sort_link(column: "collection_name_alpha", label: "Collection name") %></th>
         <th scope="col"><%= sort_link(column: "start_year", label: "Date range") %></th>
@@ -14,6 +17,9 @@
     <tbody>
     <% provenance_records.each do |provenance_record| %>
       <tr>
+        <% if params[:show_unlisted] == "true" %>
+          <td><%= provenance_record.unlist ? "X" : "" %></th>
+        <% end %>
         <td>
           <%= provenance_record.accession_number %>
         </td>
