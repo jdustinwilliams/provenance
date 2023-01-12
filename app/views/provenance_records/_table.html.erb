@@ -1,35 +1,33 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Accession #</th>
-      <th scope="col">Collection name</th>
-      <th scope="col">Date range</th>
-      <th scope="col">Linear feet</th>
-      <th scope="col">Received</th>
-      <th scope="col">Link</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @provenance_records.each do |provenance_record| %>
-    <tr>
-      <td>
-        <%= provenance_record.accession_number %>
-      </td>
-      <td>
-        <%= provenance_record.collection_name %>
-      </td>
-      <td>
-        <%= provenance_record.date_expression %>
-      </td>
-      <td>
-        <%= provenance_record.linear_feet %>
-      </td>
-      <td>
-        <%= provenance_record.year_received %>
-      </td>
-      <td>
-        <%= link_to "Show record", provenance_record %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<%= turbo_frame_tag "table" do %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"><%= sort_link(column: "accession_number", label: "Accession#") %></th>
+        <th scope="col"><%= sort_link(column: "collection_name_alpha", label: "Collection name") %></th>
+        <th scope="col"><%= sort_link(column: "start_year", label: "Date range") %></th>
+        <th scope="col"><%= sort_link(column: "linear_feet", label: "Linear feet") %></th>
+        <th scope="col">Received</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% provenance_records.each do |provenance_record| %>
+      <tr>
+        <td>
+          <%= provenance_record.accession_number %>
+        </td>
+        <td>
+          <%= link_to(provenance_record.collection_name, provenance_record) %>
+        </td>
+        <td>
+          <%= provenance_record.date_expression %>
+        </td>
+        <td>
+          <%= provenance_record.linear_feet %>
+        </td>
+        <td>
+          <%= provenance_record.year_received %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

@@ -4,6 +4,12 @@ class ProvenanceRecordsController < ApplicationController
   # GET /provenance_records or /provenance_records.json
   def index
     @provenance_records = ProvenanceRecord.all
+    if (params[:column])
+      @provenance_records = ProvenanceRecord.all.order("#{params[:column]} asc")
+    end
+    if (params[:column] == "accession_number")
+      @provenance_records = @provenance_records.sort_by{|p| p.accession_number.to_i}
+    end
   end
 
   # GET /provenance_records/1 or /provenance_records/1.json
