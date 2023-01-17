@@ -5,42 +5,42 @@
     </p>
   <% end %>
 
-  <p>
+  <div class="mb-4">
     <div class="fs-3"><%= provenance_record.collection_name %>, <%= provenance_record.date_expression %></div>
-    <div>HI Archives collection no. <%= provenance_record.accession_number %></div>
+    <div class="fs-5">HI Archives collection no. <%= provenance_record.accession_number %></div>
     <% if !provenance_record.linear_feet.blank? %>
-      <div><%= pluralize(provenance_record.linear_feet, 'linear foot', 'linear feet') %> (<%= provenance_record.containers %>)
+      <div class="fs-5"><%= pluralize(provenance_record.linear_feet, 'linear foot', 'linear feet') %> (<%= provenance_record.containers %>)</div>
     <% end %>
-  </p>
+  </div>
 
-  <p>
+  <% if provenance_record.finding_aid_link %>
+    <div>
+      <strong>Finding aid:</strong>
+      <a href="<%= provenance_record.finding_aid_link %>"><%= provenance_record.finding_aid_link %></a>
+    </div>
+  <% end %>
+
+  <div>
     <strong>Alphabetical name:</strong>
     <%= provenance_record.collection_name_alpha %>
-  </p>
+  </div>
 
-  <p>
+  <div>
     <strong>Main date range:</strong>
     <%= provenance_record.start_year %>–<%=provenance_record.end_year %>
-  </p>
+  </div>
 
-  <p>
+  <div>
     <strong>Detailed date range:</strong>
     <%= provenance_record.date_expression %>
-  </p>
+  </div>
 
-  <p>
+  <div>
     <strong>Received:</strong>
     <%= provenance_record.year_received.presence || "????" %>–<%= provenance_record.month_received.presence || "??" %>–<%= provenance_record.day_received.presence || "??" %>
-  </p>
+  </div>
 
-  <p>
-    <strong>Finding aid:</strong>
-    <% if provenance_record.finding_aid_link %>
-      <a href="<%= provenance_record.finding_aid_link %>"><%= provenance_record.finding_aid_link %></a>
-    <% end %>
-  </p>
-
-  <p>
+  <div class="mt-3">
     <strong>Files:</strong>
     <div class="row">
       <% provenance_record.provenance_files.each do |file| %>
@@ -53,6 +53,6 @@
         </div>
       <% end %>
     </div>
-  </p>
+  </div>
 
 </div>
