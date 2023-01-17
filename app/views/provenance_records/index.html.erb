@@ -2,6 +2,8 @@
 
 <h1>Provenance records</h1>
 
+<div class="text-end"><a href="<%= request.protocol %>logout:logout@<%= request.port != 80 ? request.host_with_port : request.host %><%= request.env['PATH_INFO'] %>">Log out</a></div>
+
 <%= render "table", provenance_records: @provenance_records %>
 
 <%= link_to "New provenance record", new_provenance_record_path %>
