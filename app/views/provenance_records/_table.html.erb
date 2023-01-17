@@ -25,6 +25,9 @@
         </td>
         <td>
           <%= link_to(provenance_record.collection_name_alpha, provenance_record) %>
+          <% if provenance_record.collection_name_alpha.blank? %>
+            <%= link_to(provenance_record.collection_name.presence || provenance_record.accession_number.presence || '[no title]', provenance_record) %>
+          <% end %>
         </td>
         <td>
           <%= provenance_record.date_expression %>
