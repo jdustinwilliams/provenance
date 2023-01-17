@@ -6,13 +6,31 @@
   <% end %>
 
   <p>
-    <strong>Accession number:</strong>
-    <%= provenance_record.accession_number %>
+    <div class="fs-3"><%= provenance_record.collection_name %>, <%= provenance_record.date_expression %></div>
+    <div>HI Archives collection no. <%= provenance_record.accession_number %></div>
+    <% if !provenance_record.linear_feet.blank? %>
+      <div><%= pluralize(provenance_record.linear_feet, 'linear foot', 'linear feet') %> (<%= provenance_record.containers %>)
+    <% end %>
   </p>
 
   <p>
-    <strong>Collection name:</strong>
-    <%= provenance_record.collection_name %>
+    <strong>Alphabetical name:</strong>
+    <%= provenance_record.collection_name_alpha %>
+  </p>
+
+  <p>
+    <strong>Main date range:</strong>
+    <%= provenance_record.start_year %>–<%=provenance_record.end_year %>
+  </p>
+
+  <p>
+    <strong>Detailed date range:</strong>
+    <%= provenance_record.date_expression %>
+  </p>
+
+  <p>
+    <strong>Received:</strong>
+    <%= provenance_record.year_received.presence || "????" %>–<%= provenance_record.month_received.presence || "??" %>–<%= provenance_record.day_received.presence || "??" %>
   </p>
 
   <p>
@@ -20,51 +38,6 @@
     <% if provenance_record.finding_aid_link %>
       <a href="<%= provenance_record.finding_aid_link %>"><%= provenance_record.finding_aid_link %></a>
     <% end %>
-  </p>
-
-  <p>
-    <strong>Colelction name alpha:</strong>
-    <%= provenance_record.collection_name_alpha %>
-  </p>
-
-  <p>
-    <strong>Start year:</strong>
-    <%= provenance_record.start_year %>
-  </p>
-
-  <p>
-    <strong>End year:</strong>
-    <%= provenance_record.end_year %>
-  </p>
-
-  <p>
-    <strong>Date expression:</strong>
-    <%= provenance_record.date_expression %>
-  </p>
-
-  <p>
-    <strong>Year received:</strong>
-    <%= provenance_record.year_received %>
-  </p>
-
-  <p>
-    <strong>Month received:</strong>
-    <%= provenance_record.month_received %>
-  </p>
-
-  <p>
-    <strong>Day received:</strong>
-    <%= provenance_record.day_received %>
-  </p>
-
-  <p>
-    <strong>Linear feet:</strong>
-    <%= provenance_record.linear_feet %>
-  </p>
-
-  <p>
-    <strong>Containers:</strong>
-    <%= provenance_record.containers %>
   </p>
 
   <p>
