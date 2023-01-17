@@ -1,4 +1,5 @@
 class ProvenanceRecordsController < ApplicationController
+  http_basic_authenticate_with name: "username", password: "changeme"
   before_action :set_provenance_record, only: %i[ show edit update destroy ]
 
   # GET /provenance_records or /provenance_records.json
