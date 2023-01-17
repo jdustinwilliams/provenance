@@ -5,6 +5,6 @@
 <div>
   <%= link_to "Edit this provenance record", edit_provenance_record_path(@provenance_record) %> |
   <%= link_to "Back to provenance records", provenance_records_path %>
-
-  <%= button_to "Destroy this provenance record", @provenance_record, method: :delete %>
+  <br>
+  <%= link_to "Destroy this provenance record", provenance_record_confirm_destroy_path(@provenance_record), class: "text-danger fw-bold" %>
 </div>

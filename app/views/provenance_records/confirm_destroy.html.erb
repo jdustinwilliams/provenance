@@ -1,0 +1,6 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="fs-2 fw-bold">Are you <em>absolutely sure</em> you want to delete <%= @provenance_record.accession_number %>: <%= @provenance_record.collection_name %>?</div>
+<div class="text-center mt-5">
+    <%= button_to "Destroy this provenance record", @provenance_record, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: "btn btn-danger btn-lg fw-bold" %>
+</div>
