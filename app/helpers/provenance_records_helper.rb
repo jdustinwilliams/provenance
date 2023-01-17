@@ -1,9 +1,9 @@
 module ProvenanceRecordsHelper
-    def sort_link(column:, label:)
+    def sort_link(column:, label:, class: nil)
         if column == params[:column]
-            link_to(label, provenance_records_path(column: column, direction: next_direction))
+            link_to(label, provenance_records_path(column: column, direction: next_direction), class: "link-light")
         else
-            link_to(label, provenance_records_path(column: column, direction: 'asc'))
+            link_to(label, provenance_records_path(column: column, direction: 'asc'), class: "link-light")
         end
     end
 
