@@ -11,7 +11,7 @@
         <th scope="col"><%= sort_link(column: "collection_name_alpha", label: "Collection name") %></th>
         <th scope="col"><%= sort_link(column: "start_year", label: "Date range") %></th>
         <th scope="col"><%= sort_link(column: "linear_feet", label: "Linear feet") %></th>
-        <th scope="col">Received</th>
+        <th scope="col">Finding aid</th>
       </tr>
     </thead>
     <tbody>
@@ -33,7 +33,7 @@
           <%= provenance_record.linear_feet %>
         </td>
         <td>
-          <%= provenance_record.year_received %>
+          <%= provenance_record.finding_aid_link %>
         </td>
       </tr>
     <% end %>
