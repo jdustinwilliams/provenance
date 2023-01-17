@@ -6,7 +6,7 @@ class ProvenanceRecordsController < ApplicationController
   def index
     @provenance_records = ProvenanceRecord.all
     if (params[:column])
-      @provenance_records = ProvenanceRecord.all.order("#{params[:column]} asc")
+      @provenance_records = ProvenanceRecord.all.order("#{params[:column]} #{params[:direction]}")
     end
 
     if (!params[:show_unlisted] || params[:show_unlisted] == "false")

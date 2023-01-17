@@ -1,6 +1,10 @@
 module ProvenanceRecordsHelper
     def sort_link(column:, label:)
-        link_to(label, provenance_records_path(column: column))
+        if column == params[:column]
+            link_to(label, provenance_records_path(column: column, direction: next_direction))
+        else
+            link_to(label, provenance_records_path(column: column, direction: 'asc'))
+        end
     end
 
     def toggle_unlisted_link(show_unlisted:, label:)
@@ -10,5 +14,9 @@ module ProvenanceRecordsHelper
             show_unlisted = "true"
         end
         link_to(label, provenance_records_path(show_unlisted: show_unlisted))
+    end
+
+    def next_direction
+        params[:direction] == 'asc' ? 'desc' : 'asc'
     end
 end
