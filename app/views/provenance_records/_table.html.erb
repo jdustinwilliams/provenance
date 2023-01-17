@@ -33,7 +33,9 @@
           <%= provenance_record.linear_feet %>
         </td>
         <td>
-          <%= provenance_record.finding_aid_link %>
+          <% if provenance_record.finding_aid_link %>
+            <%= link_to "link", provenance_record.finding_aid_link %>
+          <% end %>
         </td>
       </tr>
     <% end %>
