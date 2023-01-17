@@ -1,10 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
+<%= link_to "Back to list", provenance_records_path, class: "fs-3" %>
+
 <%= render @provenance_record %>
 
-<div>
-  <%= link_to "Edit this provenance record", edit_provenance_record_path(@provenance_record) %> |
-  <%= link_to "Back to provenance records", provenance_records_path %>
+<div class="mt-3">
+  <%= link_to "Edit this provenance record", edit_provenance_record_path(@provenance_record) %>
   <br>
   <%= link_to "Destroy this provenance record", provenance_record_confirm_destroy_path(@provenance_record), class: "text-danger fw-bold" %>
 </div>
