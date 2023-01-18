@@ -1,16 +1,16 @@
 <%= turbo_frame_tag "table" do %>
   <% unlisted_toggle_text = params[:show_unlisted] == "true" ? "Hide unlisted records" : "Show unlisted records" %>
-  <%= toggle_unlisted_link(show_unlisted: params[:show_unlisted], label: unlisted_toggle_text) %>
+  <%= toggle_unlisted_link(show_unlisted: params[:show_unlisted], column: params[:column], direction: params[:direction], label: unlisted_toggle_text) %>
   <table class="table table-striped">
     <thead class="table-dark">
       <tr>
         <% if params[:show_unlisted] == "true" %>
           <th scope="col">Unlisted</th>
         <% end %>
-        <th scope="col"><%= sort_link(column: "accession_number", label: "Accession#") %></th>
-        <th scope="col"><%= sort_link(column: "collection_name_alpha", label: "Collection name (alpha)") %></th>
-        <th scope="col"><%= sort_link(column: "start_year", label: "Date range") %></th>
-        <th scope="col"><%= sort_link(column: "linear_feet", label: "Linear feet") %></th>
+        <th scope="col"><%= sort_link(column: "accession_number", show_unlisted: params[:show_unlisted], label: "Accession#") %></th>
+        <th scope="col"><%= sort_link(column: "collection_name_alpha", show_unlisted: params[:show_unlisted], label: "Collection name (alpha)") %></th>
+        <th scope="col"><%= sort_link(column: "start_year", show_unlisted: params[:show_unlisted], label: "Date range") %></th>
+        <th scope="col"><%= sort_link(column: "linear_feet", show_unlisted: params[:show_unlisted], label: "Linear feet") %></th>
         <th scope="col">Finding aid</th>
       </tr>
     </thead>

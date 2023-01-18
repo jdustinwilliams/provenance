@@ -5,16 +5,19 @@ class ProvenanceRecordsController < ApplicationController
   # GET /provenance_records or /provenance_records.json
   def index
     @provenance_records = ProvenanceRecord.all
-    if (params[:column])
-      @provenance_records = ProvenanceRecord.all.order("#{params[:column]} #{params[:direction]}")
-    end
-
     if (!params[:show_unlisted] || params[:show_unlisted] == "false")
       @provenance_records = @provenance_records.where(unlist: false)
     end
 
+    if (params[:column])
+      @provenance_records = ProvenanceRecord.all.order("#{params[:column]} #{params[:direction]}")
+    end
+
     if (params[:column] == "accession_number")
       @provenance_records = @provenance_records.sort_by{|p| p.accession_number.to_i}
+      if params[:direction] == "desc"
+        @provenance_records = @provenance_records.reverse
+      end
     end
   end
 
