@@ -1,21 +1,29 @@
 class ProvenanceRecordsController < ApplicationController
   http_basic_authenticate_with name: "username", password: "changeme"
   before_action :set_provenance_record, only: %i[ show edit update destroy ]
+  before_action :persist_params
 
   # GET /provenance_records or /provenance_records.json
   def index
+    session[:show_unlisted] = params[:show_unlisted] if params[:show_unlisted].present?
+    session[:column] = params[:column] if params[:column].present?
+    session[:direction] = params[:direction] if params[:direction].present?
+    session[:q] = params[:q] if params[:q].present?
+    
     @provenance_records = ProvenanceRecord.all
-    if (!params[:show_unlisted] || params[:show_unlisted] == "false")
+    @provenance_records = ProvenanceRecord.where('collection_name like ? ', "%#{session[:q]}%") if session[:q].present?
+    
+    if (!session[:show_unlisted] || session[:show_unlisted] == "false")
       @provenance_records = @provenance_records.where(unlist: false)
     end
 
-    if (params[:column])
-      @provenance_records = ProvenanceRecord.all.order("#{params[:column]} #{params[:direction]}")
+    if (session[:column])
+      @provenance_records = @provenance_records.order("#{session[:column]} #{session[:direction]}")
     end
 
-    if (params[:column] == "accession_number")
+    if (session[:column] == "accession_number")
       @provenance_records = @provenance_records.sort_by{|p| p.accession_number.to_i}
-      if params[:direction] == "desc"
+      if session[:direction] == "desc"
         @provenance_records = @provenance_records.reverse
       end
     end
@@ -32,6 +40,15 @@ class ProvenanceRecordsController < ApplicationController
 
   # GET /provenance_records/1/edit
   def edit
+  end
+
+  def clear_settings
+    session[:show_unlisted] = nil
+    session[:column] = nil
+    session[:direction] = nil
+    session[:q] = nil
+
+    redirect_to :provenance_records
   end
 
   # POST /provenance_records or /provenance_records.json
@@ -85,5 +102,12 @@ class ProvenanceRecordsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def provenance_record_params
       params.require(:provenance_record).permit(:accession_number, :collection_name, :collection_name_alpha, :start_year, :end_year, :date_expression, :year_received, :month_received, :day_received, :linear_feet, :containers, :finding_aid_link, :unlist, :provenance_files => [])
+    end
+
+    def persist_params
+      session[:column] ||= params[:column]
+      session[:direction] ||= params[:direction]
+      session[:show_unlisted] ||= params[:show_unlisted]
+      session[:q] ||= params[:q]
     end
 end

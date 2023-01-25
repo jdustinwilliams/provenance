@@ -1,4 +1,11 @@
 <%= turbo_frame_tag "table" do %>
+  <div class="d-flex justify-content-end">
+    <%= form_with url: provenance_records_path, method: "get" do |form| %>
+      <%= form.label :q, "Search collections:", class: "form-label" %>
+      <%= form.text_field :q, value: session[:q], class: "form-control" %>
+    <% end %>
+    <%= link_to "Clear settings", :clear_settings %>
+  </div>
   <% unlisted_toggle_text = params[:show_unlisted] == "true" ? "Hide unlisted records" : "Show unlisted records" %>
   <%= toggle_unlisted_link(show_unlisted: params[:show_unlisted], column: params[:column], direction: params[:direction], label: unlisted_toggle_text) %>
   <table class="table table-striped">

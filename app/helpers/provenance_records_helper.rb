@@ -1,9 +1,9 @@
 module ProvenanceRecordsHelper
     def sort_link(column:, label:, show_unlisted: nil, class: nil)
         if column == params[:column]
-            link_to(label, provenance_records_path(column: column, direction: next_direction, show_unlisted: show_unlisted), class: "link-light")
+            link_to(label, provenance_records_path(column: column, direction: next_direction, show_unlisted: show_unlisted, q: session[:q]), class: "link-light")
         else
-            link_to(label, provenance_records_path(column: column, direction: 'asc', show_unlisted: show_unlisted), class: "link-light")
+            link_to(label, provenance_records_path(column: column, direction: 'asc', show_unlisted: show_unlisted, q: session[:q]), class: "link-light")
         end
     end
 
@@ -13,7 +13,7 @@ module ProvenanceRecordsHelper
         else
             show_unlisted = "true"
         end
-        link_to(label, provenance_records_path(show_unlisted: show_unlisted, column: column, direction: direction))
+        link_to(label, provenance_records_path(show_unlisted: show_unlisted, column: column, direction: direction, q: session[:q]))
     end
 
     def next_direction
