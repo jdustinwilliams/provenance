@@ -9,6 +9,9 @@ class ProvenanceRecordsController < ApplicationController
     session[:column] = params[:column] if params[:column].present?
     session[:direction] = params[:direction] if params[:direction].present?
     session[:q] = params[:q] if params[:q].present?
+
+    session[:column] = "accession_number" if !session[:column].present?
+    session[:direction] = "asc" if !session[:direction].present?
     
     @provenance_records = ProvenanceRecord.all
     @provenance_records = ProvenanceRecord.where('collection_name like ? ', "%#{session[:q]}%") if session[:q].present?
