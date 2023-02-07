@@ -95,6 +95,7 @@
       <% else %>
         <%= link_to file.filename, rails_blob_path(file, disposition: 'attachment') %>
       <% end%>
+      <%= link_to 'Delete file', delete_file_attachment_url(file), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
     <% end %>
   </div>
 

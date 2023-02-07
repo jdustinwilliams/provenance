@@ -45,6 +45,13 @@ class ProvenanceRecordsController < ApplicationController
   def edit
   end
 
+  # Based on: https://gorails.com/forum/how-do-i-create-a-delete-button-for-images-uploaded-with-active-storage
+  def delete_file_attachment
+    @file = ActiveStorage::Attachment.find(params[:id])
+    @file.purge
+    redirect_back(fallback_location: request.referer)
+  end
+
   def clear_settings
     session[:show_unlisted] = nil
     session[:column] = nil
