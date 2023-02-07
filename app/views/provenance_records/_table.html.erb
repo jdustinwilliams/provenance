@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "table" do %>
   <div class="d-flex justify-content-end">
     <%= form_with url: provenance_records_path, method: "get" do |form| %>
-      <%= form.label :q, "Search collections:", class: "form-label" %>
+      <%= form.label :q, "Search collection names:", class: "form-label" %>
       <%= form.text_field :q, value: session[:q], class: "form-control" %>
     <% end %>
     <%= link_to "Clear settings", :clear_settings %>
